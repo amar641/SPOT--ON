@@ -1,55 +1,90 @@
 import json
-import time
-import threading
+import os
 from flask import Flask, jsonify
-
-JSON_FILE = "C:\\Users\\Asus\\OneDrive\\Desktop\\Projects\\spoton\\SPOT--ON\\database.json"  
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for Node.js server to fetch data
+
+# Use relative path - works from any directory
+JSON_FILE = "database.json"
 
 def read_parking_data():
+    """Read parking data from database.json"""
     try:
+        if not os.path.exists(JSON_FILE):
+            return {
+                "total_spaces": 0,
+                "free_spaces": 0,
+                "occupied_spaces": 0,
+                "probability": 0.0,
+                "error": "Database file not found"
+            }
+
         with open(JSON_FILE, "r") as f:
             data = json.load(f)
 
         parking = data.get("parking_lot", {})
-        total_spaces = parking.get("total_spaces", 0)
-        free_spaces = parking.get("free_spaces", 0)
-        occupied_spaces = parking.get("occupied_spaces", 0)
-        probability = parking.get("probability", 0.0)
-
+        
         return {
-            "total_spaces": total_spaces,
-            "free_spaces": free_spaces,
-            "occupied_spaces": occupied_spaces,
-            "probability": probability
+            "total_spaces": parking.get("total_spaces", 0),
+            "free_spaces": parking.get("free_spaces", 0),
+            "occupied_spaces": parking.get("occupied_spaces", 0),
+            "probability": parking.get("probability", 0.0),
+            "timestamp": parking.get("timestamp", "N/A")
         }
 
+    except json.JSONDecodeError as e:
+        print(f"JSON decode error: {e}", flush=True)
+        return {
+            "total_spaces": 0,
+            "free_spaces": 0,
+            "occupied_spaces": 0,
+            "probability": 0.0,
+            "error": "Invalid JSON format"
+        }
     except Exception as e:
         print(f"Error reading JSON: {e}", flush=True)
         return {
             "total_spaces": 0,
             "free_spaces": 0,
             "occupied_spaces": 0,
-            "probability": 0.0
+            "probability": 0.0,
+            "error": str(e)
         }
 
-def print_continuously():
-    while True:
-        data = read_parking_data()
-        print(f"Total: {data['total_spaces']}, Free: {data['free_spaces']}, "
-              f"Occupied: {data['occupied_spaces']}, Probability: {data['probability']:.2f}%", flush=True)
-        time.sleep(1)
+@app.route('/', methods=['GET'])
+def home():
+    """Root endpoint"""
+    return jsonify({
+        "message": "Parking Detection API",
+        "endpoints": {
+            "/parking-data": "GET - Fetch current parking data",
+            "/health": "GET - Check API health"
+        }
+    }), 200
 
 @app.route('/parking-data', methods=['GET'])
 def get_parking_data():
+    """GET endpoint for parking data"""
     data = read_parking_data()
     return jsonify(data), 200
 
-if __name__ == "__main__":
-    # Start continuous printing in background
-    t = threading.Thread(target=print_continuously, daemon=True)
-    t.start()
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Health check endpoint"""
+    return jsonify({
+        "status": "running",
+        "database_exists": os.path.exists(JSON_FILE)
+    }), 200
 
-    # Start Flask server
-    app.run(host="0.0.0.0", port=8080, debug=True)
+if __name__ == "__main__":
+    print("=" * 50)
+    print("🚗 Parking Detection API Server Starting...")
+    print(f"📁 Database file: {os.path.abspath(JSON_FILE)}")
+    print(f"🌐 API will be available at: http://localhost:5000")
+    print(f"📊 Parking data endpoint: http://localhost:5000/parking-data")
+    print("=" * 50)
+    
+    # Run Flask on port 5000 (default) without debug mode for production
+    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
