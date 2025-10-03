@@ -10,11 +10,17 @@ with open('CarParkPos', 'rb') as f:
 
 # Open multiple cameras
 cameras = {
-    0: cv2.VideoCapture(0),  # add more if you have more cams
+    0: cv2.VideoCapture(0),  
     5: cv2.VideoCapture(5)
 }
 
-def checkParkingSpace(imgPro, img, cam_id):
+# Different thresholds for each camera
+thresholds = {
+    0: 300,   # Camera 0 threshold
+    5: 250    # Camera 5 threshold (example)
+}
+
+def checkParkingSpace(imgPro, img, cam_id, threshold):
     free_spaces = 0
     occupied_spaces = 0
 
@@ -27,7 +33,6 @@ def checkParkingSpace(imgPro, img, cam_id):
             imgCrop = imgPro[y1:y2, x1:x2]
             count = cv2.countNonZero(imgCrop)
 
-            threshold = 300
             if count < threshold:
                 rect_color = (0, 255, 0)
                 free_spaces += 1
@@ -69,11 +74,13 @@ while True:
             kernel = np.ones((3, 3), np.uint8)
             imgDilate = cv2.dilate(imgMedian, kernel, iterations=1)
 
-            free, occ = checkParkingSpace(imgDilate, img, cam_id)
+            # Get threshold for this camera
+            cam_threshold = thresholds.get(cam_id, 300)  # default = 300
+            free, occ = checkParkingSpace(imgDilate, img, cam_id, cam_threshold)
             free_total += free
             occ_total += occ
 
-            cvzone.putTextRect(img, f"Cam {cam_id} | Free: {free} Occ: {occ}",
+            cvzone.putTextRect(img, f"Cam {cam_id} | Free: {free} Occ: {occ} Th={cam_threshold}",
                                (30, 30), scale=1, thickness=2, offset=5, colorR=(255, 200, 0))
 
         frames.append(cv2.resize(img, (640, 480)))
