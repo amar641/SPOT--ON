@@ -1,0 +1,16 @@
+<% layout("../layouts/boilerplate.ejs") %>
+
+<body class="fadeIn">
+    <div class="profilePicture">
+        <img src="/static/images/profilePicture.jpeg" alt="profileIcon">
+        <h2 class="inter">
+            <%= currUser.username %>
+        </h2>
+        <p class="poppins-regular"> <%= currUser.email %></p>
+        <p class="poppins-extralight"><%= currUser._id %></p>
+    </div>
+
+    
+
+    
+</body>

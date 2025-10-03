@@ -1,0 +1,36 @@
+<% layout("../layouts/boilerplate.ejs") %>
+
+<body class="fadeIn">
+    <h2 class="inter">
+        The Space
+    </h2>
+
+    <div class="showContainer">
+        
+        <div class="scrollImage">
+            <img class="showImage" src="<%= space.imageUrl %>" alt="">
+        </div>
+
+        <div class="textContainer">
+            <h2>Details</h2>
+
+            <p class=" poppins-regular" ><%= space.name %></p>
+
+            <p class=" poppins-regular" ><%= space.type %></p>
+             
+            <p>description:</p>
+            <p class=" poppins-regular" ><%= space.description %></p>
+    
+            <p class=" poppins-regular" ><%= space.address %></p>
+
+            <p class=" poppins-regular" ><%= space.city %></p>
+    
+            <p class=" poppins-regular" ><%= space.state %></p>
+
+            <p class=" poppins-regular" ><%= space.pincode %></p>
+
+            <p class=" poppins-regular" ><%= space.totalParkingSpots %></p>
+            
+        </div>
+    </div>
+</body>

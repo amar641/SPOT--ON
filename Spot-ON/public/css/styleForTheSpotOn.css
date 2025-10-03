@@ -1,0 +1,62 @@
+.presentationContainer{
+    width: 70%;
+    margin: auto;
+}
+.wiredBox1,.wiredBox2,.wiredBox3,.wiredBox4,.wiredBox5,.wiredBox6,.wiredBox7,.wiredBox8,.wiredBox9,.wiredBox10,.wiredBox11{
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    padding: 0.5rem;
+    margin: auto;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+    margin-bottom: 30px;
+    margin-top: 10vh;
+    animation: gradientShadow 10s infinite alternate;
+}
+@keyframes gradientShadow {
+    0% {
+      box-shadow: 0 10px 30px rgba(255, 126, 95, 0.7), 0 10px 60px rgba(254, 180, 123, 0.5);
+    }
+    50% {
+      box-shadow: 0 10px 40px rgba(135, 206, 235, 0.7), 0 10px 80px rgba(173, 216, 230, 0.5);
+    }
+    100% {
+      box-shadow: 0 10px 30px rgba(238, 211, 144, 0.7), 0 10px 60px rgba(251, 248, 152, 0.5);
+    }
+  }
+
+  /* .box {
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 50px;
+    background: #121212;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 126, 95, 0.8), 0 0 40px rgba(254, 180, 123, 0.5);
+    position: relative;
+    z-index: 2;
+  } */
+
+  .line {
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b, #6a82fb, #fc5c7d);
+    transition: height 0.3s ease-in-out;
+    z-index: 1;
+  }
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+
+  path {
+    fill: none;
+    stroke-width: 5px;
+    stroke: url(#gradient);
+  }

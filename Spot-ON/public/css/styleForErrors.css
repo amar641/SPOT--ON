@@ -1,0 +1,13 @@
+/* =============== Error.ejs =============== */
+.errorContainer{
+    width: 60%;
+    margin: auto;
+}
+.errorName{
+    color: #1E293B;
+    font-size: 3rem;
+}
+.statusCode{
+    color: #ffcc00;
+    font-size: 2rem;
+}

@@ -1,0 +1,251 @@
+/* font */
+.poppins-extralight {
+    font-family: "Poppins", serif;
+    font-weight: 200;
+    font-style: normal;
+}
+  
+.poppins-regular {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.poppins-semibold {
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.inter{
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+  
+  
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: border-box;
+}
+body{
+    background-color:#F7F7F7 ;
+    /* for the fixed navbar */
+    /* padding-top: 90px; */
+}
+.container{
+    width: 100%;
+    margin: 0;
+}
+
+/* ================ Home ==============*/
+.background{
+    /* background-image: url("/static/images/Screenshot 2025-01-27 at 2.33.20 PM.png"); */
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+.heroSection{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 50vh;
+    padding: 3rem ;
+}
+.heroSection h1{
+    text-align: center;
+    font-size: 4.4rem;
+}
+.heroSection p{
+    text-align: center;
+    font-size: 1.4rem;
+}
+.welcome{
+    margin-top: 15px;
+}
+.bottomText{
+    margin-top: 15px;
+}
+.searchArea, .locationArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 60px;
+    margin: auto;
+    background-color: white;
+    box-shadow: 1.5px 1.5px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+    margin-bottom: 30px;
+    margin-top: 10vh;
+}
+.where, .fore, .date, .location{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    padding: 1.4rem 2rem;
+    font-size: 0.85rem;
+    border-radius: 100px;
+}
+/* .whereLayer{
+    margin-top: 17px;
+} */
+.where:hover, .fore:hover,.date:hover, .location:hover {
+    background-color:rgba(215, 213, 213, 0.78) ;
+    transition: background-color 0.1s ease-in-out;
+}
+.where p,.fore p, .date p, .location p{
+    margin: 0;
+}
+.searchbar, .timePeriod, .addDates,.yourLocation{
+    border: none;
+    background: none;
+}
+.searchbar, .yourLocation{
+    width: 100%;
+}
+.searchIcon, .locationIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7.7rem;
+    height: 3.2rem;
+    border-radius:50% ;
+    background-color: #ffcc00;
+    margin-right: 10px;
+}
+.searchIcon i, .locationIcon i{
+    color: #212529;
+    font-size: 1.2rem;
+}
+.searchIcon:hover, .locationIcon:hover{
+    background-color: rgb(235, 188, 0);
+    transition: background-color 0.2s ease-in-out;
+}
+.searchResults{
+    position: absolute;
+    background-color: #ffcc00;
+    top: 120%;
+    left: 0;
+    z-index: 100;
+    border-radius: 35px;
+    max-height: 400px;
+    width: 400px;
+    overflow-y: auto;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+.timeRange{
+    position: absolute;
+    background-color: #ffcc00;
+    top: 120%;
+    left: 45%;
+    z-index: 100;
+    border-radius: 35px;
+    max-height: 400px;
+    width: 400px;
+    overflow-y: auto;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+.mapContainer{
+    height: 400px;
+    width: 90%;
+    margin: auto;
+    background-color: #ffcc00;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+#map{
+    height: 400px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* the generated location bar */
+.locationIcon{
+    width: 3.6rem;
+}
+.locationArea{
+    margin-top: 3px;
+}
+
+/* Park it Right. */
+.heroVideo{
+    position: relative;
+    margin-top: 6rem;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* ensure it happens symmetrically */
+    transform: translateX(-50%);
+    transition: width 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), 
+    border-radius 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: width, border-radius;
+    z-index: -1;
+}
+.loopVideo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+.videoText{
+    position: absolute;
+    top: 80%;
+    left: 5%;
+    z-index: 1;
+    font-size: 5rem;
+    color: #F7F7F7;
+}
+
+
+
+
+
+/* ===================== Footer ==================== */
+.upperFoot{
+    display: flex;
+    padding: 4px 0 ;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+.addInfo ul{
+    display: flex;
+    align-items: center;
+}
+.addInfo li a{
+    margin: 0 6px;
+    padding-right: 17px;
+    text-decoration: none;
+    color: #1E293B;
+}
+.firstHalf{
+    display: flex;
+    color: #6a6a6a;
+}
+.socialInfo i{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    padding-left: 4px;
+}
+.footIcon{
+    border-radius: 5px;
+    background-color: #1E293B;
+    color: #ebbc00;
+}
