@@ -36,7 +36,6 @@ const LocalStrategy = require("passport-local");
 // users database
 const User = require('./models/user.js');
 
-
 // mongoose
 const mongoose = require('mongoose');
 
@@ -47,9 +46,7 @@ const dbURL = process.env.MONGO_ATLAS_URL
 async function main() {
     try {
       await mongoose.connect(dbURL);
-
       console.log("connection successful");
-
     } catch (err) {
       console.error("Error connecting to the database:", err);
     };
@@ -66,10 +63,12 @@ const http = require('http');
 const server = http.createServer(app);
 const socketIo = require('socket.io');
 const io = socketIo(server);
-const WebSocket = require('ws');
 
-// Our Python process
-const startPythonProcess = require("./pythonProcess.js")
+
+// Import Python WebSocket Bridge
+const PythonWebSocketBridge = require('./PythonwebsocketBridge.js');
+
+
 
 // ======================= Sessions ==========================
 // Mongo Sessions Store
@@ -137,17 +136,38 @@ app.use('/static', express.static('public'));
 // ==========================================================
 
 
-// ===================== Python Script ======================
-// Run python
-startPythonProcess(io);
 
 
-// ================== WebSocket connection ==================
+// ========= Initialize Python WebSocket Bridge ============
+const pythonBridge = new PythonWebSocketBridge({
+  pythonServerUrl: 'http://localhost:8080',
+  maxReconnectAttempts: 10,
+  reconnectionDelay: 2000,
+  requestDataInterval: 2000
+});
+
+// Initialize with Socket.io server and connect after delay
+setTimeout(() => {
+  pythonBridge
+    .initialize(io)
+    .connect();
+}, 2000);
+
+
+// ================== WebSocket connection with Frontend ==================
 io.on('connection', (socket) => {
-  console.log('Client connected via WebSocket');
+  console.log('✅ Frontend client connected via WebSocket');
+
+  // Send current data immediately on connection
+  socket.on('request_parking_data', () => {
+    const success = pythonBridge.requestData();
+    if (!success) {
+      console.log('⚠️ Cannot request data - not connected to Python server');
+    }
+  });
 
   socket.on('disconnect', () => {
-    console.log('Client disconnected');
+    console.log('❌ Frontend client disconnected');
   });
 });
 
@@ -162,6 +182,11 @@ app.use("/", userRoutes);
 
 // Spaces Routes
 app.use("/", spacesRoutes);
+
+// Optional: Add status endpoint to check Python connection
+app.get('/api/python-status', (req, res) => {
+  res.json(pythonBridge.getStatus());
+});
 
 
 // ================== Undefined Route ===================
@@ -180,8 +205,28 @@ app.use((err,req,res,next)=>{
 });
 
 
+// ======================= Cleanup on Exit ====================
+process.on('SIGINT', () => {
+  console.log('\n\n👋 Shutting down gracefully...');
+  pythonBridge.disconnect();
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n\n👋 Shutting down gracefully...');
+  pythonBridge.disconnect();
+  process.exit(0);
+});
+
+
 // ======================= Port ========================
-const port = 8080;
+const port = 3000;
 server.listen(port, () => {
-    console.log("App is listening on port : 8080")
+    console.log('\n' + '='.repeat(60));
+    console.log('🚀 SPOT-ON Server Started Successfully!');
+    console.log('='.repeat(60));
+    console.log(`🌐 Node.js Server: http://localhost:${port}`);
+    console.log(`🐍 Python Flask Server: http://localhost:8080`);
+    console.log(`📊 Waiting for parking data...`);
+    console.log('='.repeat(60) + '\n');
 });
