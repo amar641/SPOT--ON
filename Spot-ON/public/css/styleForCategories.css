@@ -1,0 +1,131 @@
+/* ============== Categories.ejs ================ */
+.categoriesWelcome{
+    width: 90%;
+    margin: auto;
+    margin-top: 10rem;
+    font-size: 4rem;
+
+}
+.maneuverBar{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.categories{
+    width: 70%;
+    margin: auto;
+    overflow-x: auto;
+}
+.listOfCategories{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 5px 10px;
+    margin-top: 4px;
+}
+.categoryBtn{
+    border: none;
+    color:rgb(106, 106, 106) ;
+    height: 40px;
+    background-color: #F7F7F7;
+}
+.categoryBtn:hover{
+    color: #212529;
+    border-bottom: 2px solid rgb(106, 106, 106);
+}
+.clickedBtn{
+    color: rgb(30, 41, 59);
+    border-bottom: 2px solid rgb(30, 41, 59);
+}
+.filterBox{
+    display: inline-block;
+    margin: auto;
+    padding-bottom: 12px;
+}
+.filter{
+    border: 1px solid #bababa;
+    width: 100px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: #F7F7F7;
+}
+.filter:hover{
+    border: 1px solid #6a6a6a;
+    background-color: rgba(229, 226, 226, 0.603);
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+.spaceContainer{
+    margin-bottom: 4rem;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: auto;
+}
+.row{
+    margin-top: 35px;
+}
+.imageContainer{
+    display: inline-block;
+    padding: 0;
+}
+.listOfNames{
+    margin-top: 15px;
+    display: inline;
+    list-style: none;
+}
+.spaceName{
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: #212529;
+}
+.spaceName:hover{
+    color: #ebbc00;
+    transition: color 0.2s ease-in-out;
+}
+.spaceAddress, .spaceState{
+    color: #6a6a6a;
+    font-size: 0.8rem;
+}
+.cardImg{
+    width: 255px;
+    height: 240px;
+    border-radius: 10px;
+}
+.image{
+    object-fit: cover;
+}
+
+.spaceText{
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.950);
+    cursor: pointer;
+    opacity: 0;
+    width: 245px;
+    height: 250px;
+    padding: 112px 0 0 5px;
+}
+.spaceTextBg{
+    position: absolute;
+    width: 255px;
+    height: 240px;
+    border-radius: 10px;
+    background: linear-gradient(to top, rgba(255, 204, 0, 0.800), rgba(255, 204, 0, 0.150));
+    padding: 0;
+    /* margin-left: 12px; */
+    cursor: pointer;
+    opacity: 0;
+}
+.spaceText:hover, .spaceTextBg:hover{
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+

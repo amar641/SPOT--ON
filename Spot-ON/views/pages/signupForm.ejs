@@ -1,0 +1,35 @@
+<% layout("../layouts/boilerplate.ejs") %>
+
+<div class="loginPage fadeIn">
+    <div class="videoHalf">
+        <video autoplay loop muted playsinline class="loopVideo fadeIn" >
+            <source src="/static/videos/heroVideo1080.mp4" type="video/mp4" >
+        </video>
+
+        <div class="loginVideoText inter">
+            PARK IT
+            <br>
+            YOUR WAY.
+        </div>
+    </div>
+
+
+    <nav class="formHalf">
+        <h2 class="newListings-title poppins-regular">We welcome you on this new experience</h2>
+
+        <form class="createForm" method="POST" action="/signup" novalidate>
+        
+            <p>Email</p>
+            <input class="inputBox poppins-regular" type="email" name="email" placeholder="your email" required>
+
+            <p>Username</p>
+            <input class="inputBox poppins-regular" type="text" name="username" placeholder="your username" required>
+        
+            <p>Password</p>
+            <input class="inputBox poppins-regular" type="password" name="password" placeholder="your password" required>
+        
+            <button type="submit" class="poppins-regular createBtn button">Sign up!</button>
+        
+        </form>
+    
+</div>

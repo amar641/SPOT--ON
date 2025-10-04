@@ -1,0 +1,45 @@
+{
+  "engines": {
+    "node": ">=23.5.0"
+  },
+  "name": "spot-on",
+  "version": "1.0.0",
+  "description": "A project for those who dare to dream ☁️, for the innovators of the future who love💛 to contribute to the betterment of the world🌸 <br> Here I present to you SPOT ON!✨ <br> We strive to deliver the following features: <br> 1. A one-stop destination to locate all the available parking spaces in the nearby workspaces 2. Probabilistic data to showcase the chances of getting a parking space based on real-time data 3. Parking charges with an integrated digital payment system 4. Detection of wrong parking, super useful for large organizers to complement spaces",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masamasaowl/Spot-ON.git"
+  },
+  "keywords": [],
+  "author": "CIA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masamasaowl/Spot-ON/issues"
+  },
+  "homepage": "https://github.com/masamasaowl/Spot-ON#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "joi": "^17.13.3",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.9.4",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0",
+    "python-shell": "^5.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "ws": "^8.18.1"
+  }
+}

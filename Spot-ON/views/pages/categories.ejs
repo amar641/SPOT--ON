@@ -1,0 +1,92 @@
+<h2 class="inter fadeIn categoriesWelcome"> Go fast. Go far.</h2>
+
+<div class="maneuverBar fadeIn">
+    <div class="categories">
+        <ul class="listOfCategories">
+            <li >
+                <button id="category" class="categoryBtn poppins-regular clickedBtn" data-name="Spaces">
+                    Spaces
+                </button>
+            </li>
+            <li >
+                <button id="category" class="categoryBtn poppins-regular" data-name="Entertainment">
+                    Entertainment
+                </button>
+            </li>
+            <li >
+                <button id="category" class="categoryBtn poppins-regular" data-name="Travel">
+                    Travel
+                </button>
+            </li>
+            <li >
+                <button id="category" class="categoryBtn poppins-regular" data-name="Stays">
+                    Stays
+                </button>
+            </li>
+            <li >
+                <button id="category" class="categoryBtn poppins-regular" data-name="Institutions">
+                    Institutions
+                </button>
+            </li>
+            <li >
+                <button id="category" class="categoryBtn poppins-regular" data-name="Care">
+                    Care
+                </button>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="filterBox">
+        <button class="filter poppins-regular">
+            <i class="fa-solid fa-sliders"></i>
+            &nbsp;Filters
+        </button>
+    </div>
+</div>
+
+<ul id="dataContainer" class="spaceContainer fadeIn">
+    <% for(let space of onlySpaces){ %> 
+
+        <div class="row">
+            <a href="/spaces/show/<%= space._id %>">
+                <div class="spaceTextBg">
+                    <div class="spaceText poppins-regular">
+                        Type: <%= space.type %>
+                        <br>
+                        Parking spots: <%= space.totalParkingSpots %>
+                        <br>
+                        Description: <%= space.description %>    
+                    </div>
+                </div>
+            </a> 
+            
+            
+            
+            <a class="" href="/spaces/show/<%= space._id %>">
+                <div class="imageContainer">
+                    <img src="<%= space.imageUrl %>" class="cardImg image" alt="space image">
+                     
+                </div>   
+            </a>
+        
+            <li class="listOfNames">
+                <a class="poppins-regular spaceName" href="/spaces/show/<%= space._id %>">
+                    <%= space.name %>
+                </a>
+                
+                <div class="spaceAddress poppins-regular">
+                    <%= space.address %>
+                </div>
+                
+                <div class="spaceState poppins-regular">
+                    <%= space.state %>
+                </div>
+            </li>                   
+        </div>
+    
+    <% } %>
+</ul>
+
+
+
+<div class="horizontalLine"></div>

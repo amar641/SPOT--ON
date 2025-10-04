@@ -1,0 +1,157 @@
+<% layout("../layouts/boilerplate.ejs") %>
+
+<body>
+    <div class="background">
+        <div class="heroSection">
+            
+            <div class="headText fadeIn">
+                <h1 class="welcome inter">Park Smarter.
+                    <br> Spot On
+                </h1>
+    
+            </div>
+            <div class="bottomText">
+    
+                <p class="poppins-regular fadeIn">
+                    Discover and reserve parking spaces in seconds. No stress, no waiting—just park with confidence.
+                </p>
+            </div>
+        </div>
+        
+    
+         <div class="searchArea fadeIn">
+            <div class="where ">
+                <div class="whereLayer">
+                    <p class="poppins-regular whereText">Where to</p>
+                    <input class="searchbar poppins-regular" name="searchbar" type="text" placeholder="Search destinations">
+        
+                    <!-- an empty list for the JS to filter search results -->
+                    <div id="searchPanel">
+        
+                        <ul class="listOfSpaces hidden">
+                            <p class="poppins-regular hidden" id="suggestions"> Suggested destinations</p>
+
+                            <li class="suggestionStyle">
+                                <i class="fa-solid fa-location-dot">       
+                                </i>
+                                <div class="suggestionContainer">
+                                    <div class="locationName poppins-regular">
+                                        The Spot On
+                                    </div>
+                                    <div class="locationType poppins-regular">
+                                        test case ( just for you )
+                                    </div>
+                                </div>
+                            </li>      
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="verticalLine"></div>
+    
+            <div class="fore">
+                <p class="poppins-regular">For</p>
+                <input class="timePeriod poppins-regular" name="timePeriod" type="text" placeholder="Time period">
+    
+                <div id="timePanel">
+    
+                    <ul class="listOfTimings hidden">
+                        <p class="poppins-regular" id="aroundPeriod">Your stay would be around</p>
+    
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings
+                        poppins-regular">10-20 minutes</li>
+                        <br>
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings poppins-regular">20-30 minutes</li>
+                        <br>
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings poppins-regular">30-40 minutes</li>
+                        <br>
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings poppins-regular">40-50 hour</li>
+                        <br>
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings poppins-regular">1 hour</li>
+                        <br>
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings poppins-regular">2 hours</li>
+                        <br>
+                        <i class="fa-solid fa-clock"></i>
+                        <li class="timings poppins-regular">3 hours</li>
+                   
+                    </ul> 
+                </div>
+    
+            </div>
+    
+            <div id="verticalLine2" class="verticalLine hidden"></div>
+    
+            <div class="date hidden">
+                 <p class="poppins-regular">Date</p>
+                <input class="addDates poppins-regular" name="addDates" type="text" placeholder="Add dates">
+            
+            </div>
+            
+            <div class="searchIcon poppins-regular ">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <p class="nbsp hidden">&nbsp;</p>
+            </div>
+     
+        </div>
+
+
+        <!-- if the Test Case is selected -->
+        <%- include('../pages/theSpotOn.ejs') %>
+
+
+        <div class="afterSelection hidden">
+            <p class="enterLocation ">*Your location would help us showcase probabilistic data </p>
+
+            <div class="locationArea">
+                <div class="location">
+                    <p class="poppins-regular whereText">Location</p>
+                    <input class="yourLocation poppins-regular" name="yourLocation" type="text" placeholder="Your location">
+    
+                </div>
+        
+                <div class="locationIcon poppins-regular ">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+                
+            </div>
+        
+            <div class="mapContainer">
+                <div id="map">
+                </div>
+            </div>
+
+            <button class="checkProbabilityBtn popppins-regular ">Check Probability</button>
+        </div>
+
+        <%- include('../pages/checkProbability.ejs') %>
+    </div>
+
+    
+    <div class="heroVideo ">
+        <video autoplay loop muted playsinline class="loopVideo fadeIn" >
+            <source src="/static/videos/heroVideo1080.mp4" type="video/mp4" >
+        </video>
+    
+        <div class="videoText inter">
+            PARK IT RIGHT.
+        </div>
+    </div>
+
+    
+    <%- include('../pages/categories.ejs') %>
+
+    <!-- Google Maps -->
+    <!-- prettier-ignore -->
+    <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+    
+        ({key: "<%= googleMapsApiKey %>", v: "weekly"});
+    </script>
+</body>

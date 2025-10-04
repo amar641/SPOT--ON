@@ -1,0 +1,21 @@
+.showContainer{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.showImage{
+    height: 80vh;
+    width: 100%;
+    background-size: cover;
+    object-fit: cover;
+    border-radius: 25px;
+}
+.textContainer{
+    width: 40vh;
+    height: 90vh;
+    padding: 10px;
+    background-color:aliceblue;
+    border: 1px solid black;
+    border-radius: 35px;
+}
